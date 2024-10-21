@@ -1,4 +1,3 @@
-// TeamMember.ts
 import { Task } from './Task';
 
 export interface TeamMember {

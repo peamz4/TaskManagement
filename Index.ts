@@ -1,4 +1,3 @@
-// index.ts
 import { Task } from './Task';
 import { PriorityTask } from './PriorityTask';
 import { assignTask, TeamMember } from './TeamMember';
@@ -40,9 +39,19 @@ const markAsUrgent = createTaskUpdater((task: Task) => {
     const tasks = await fetchTasks();
     const member: TeamMember = { name: 'Alice', role: 'Developer', tasks: [] };
 
-    tasks.forEach(task => {
-        assignTask(member, task);
-    });
+    // Create a queue to manage tasks
+    const taskQueue = new Queue<Task>();
+
+    // fetched tasks
+    tasks.forEach(task => taskQueue.enqueue(task));
+
+    // Dequeue and assign tasks to the team member
+    while (taskQueue.size() > 0) {
+        const task = taskQueue.dequeue();
+        if (task) {
+            assignTask(member, task);
+        }
+    }
 
     const priorityTask = new PriorityTask("Urgent Task", "Complete ASAP", 'high');
     assignTask(member, priorityTask);

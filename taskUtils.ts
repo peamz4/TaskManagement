@@ -1,4 +1,3 @@
-// taskUtils.ts
 import { Task } from './Task';
 
 export function calculateTotalCompletedTasks(tasks: Task[]): number {

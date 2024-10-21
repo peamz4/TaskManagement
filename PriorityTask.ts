@@ -1,4 +1,3 @@
-// PriorityTask.ts
 import { Task } from './Task';
 
 export class PriorityTask extends Task {

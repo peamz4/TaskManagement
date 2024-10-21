@@ -1,4 +1,3 @@
-// Queue.ts
 export class Queue<T> {
     private items: T[] = [];
 

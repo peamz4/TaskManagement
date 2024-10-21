@@ -1,4 +1,3 @@
-// Task.ts
 export class Task {
   static totalTasksCount = 0; // ตัวแปรสถิติจำนวนงานทั้งหมด
   title: string;
