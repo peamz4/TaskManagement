@@ -1,3 +1,4 @@
+// index.ts
 import { Task } from './Task';
 import { PriorityTask } from './PriorityTask';
 import { assignTask, TeamMember } from './TeamMember';
@@ -42,7 +43,7 @@ const markAsUrgent = createTaskUpdater((task: Task) => {
     // Create a queue to manage tasks
     const taskQueue = new Queue<Task>();
 
-    // fetched tasks
+    // Enqueue fetched tasks
     tasks.forEach(task => taskQueue.enqueue(task));
 
     // Dequeue and assign tasks to the team member
@@ -62,4 +63,12 @@ const markAsUrgent = createTaskUpdater((task: Task) => {
 
     // Count completed tasks
     console.log(`Total completed tasks: ${calculateTotalCompletedTasks(member.tasks)}`);
+
+    // Show total tasks and their priorities
+    console.log(`Total Tasks Assigned to ${member.name}: ${member.tasks.length}`);
+    console.log("Tasks and their priorities:");
+    member.tasks.forEach(task => {
+        const priority = task instanceof PriorityTask ? task.priority : 'normal'; // Assuming normal for non-priority tasks
+        console.log(`- ${task.title}: ${priority}`);
+    });
 })();
